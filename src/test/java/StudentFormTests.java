@@ -11,19 +11,16 @@ public class StudentFormTests {
 
     private ChromeDriver driver;
 
-
     @BeforeMethod
-    public void setUp() throws InterruptedException {
+    public void setUp() {
         driver = new ChromeDriver();
-        driver.get("https://demoqa.com/automation-practice-form");
-        driver.manage().window().maximize();
-        Thread.sleep(500);
     }
 
     @Test
-    public void studentForm_inputsRequiredValues_createsUser() {
+    public void studentForm_inputsRequiredValues_createsUser() throws InterruptedException {
         var form = new StudentForm(driver);
-        form.setName("Eric", "Camescasse")
+        form.open()
+            .setName("Eric", "Camescasse")
             .setGender("Male")
             .setMobile("8095980728")
             .submit();
