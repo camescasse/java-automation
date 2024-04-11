@@ -1,5 +1,5 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.example.pageObjectModels.ConfirmationModal;
+import org.example.pageObjectModels.StudentForm;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,37 +10,27 @@ import static com.google.common.truth.Truth.assertThat;
 public class StudentFormTests {
 
     private ChromeDriver driver;
-    private JavascriptExecutor executor;
+
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         driver = new ChromeDriver();
-        executor = driver;
         driver.get("https://demoqa.com/automation-practice-form");
         driver.manage().window().maximize();
+        Thread.sleep(500);
     }
 
     @Test
     public void studentForm_inputsRequiredValues_createsUser() {
+        var form = new StudentForm(driver);
+        form.setName("Eric", "Camescasse");
+        form.setGender("Male");
+        form.setMobile("8095980728");
+        form.submit();
 
-        var inputFirstName = driver.findElement(By.id("firstName"));
-        inputFirstName.sendKeys("Eric");
+        var modal = new ConfirmationModal(driver);
 
-        var inputLastName = driver.findElement(By.xpath("//input[@id=\"lastName\"]"));
-        inputLastName.sendKeys("Camescasse");
-
-        var radioMaleGender = driver.findElement(By.xpath("//label[text()=\"Male\"]/.."));
-        radioMaleGender.click();
-
-        var inputMobile = driver.findElement(By.id("userNumber"));
-        inputMobile.sendKeys("8095980728");
-
-        var buttonSubmit = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].scrollIntoView(true);", buttonSubmit);
-        buttonSubmit.click();
-
-        var modalTitleForm = driver.findElement(By.id("example-modal-sizes-title-lg"));
-        assertThat(modalTitleForm.getText()).isEqualTo("Thanks for submitting the form");
+        assertThat(modal.getTitleText()).isEqualTo("Thanks for submitting the form");
     }
 
     @AfterMethod
