@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
-public class StudentFormTests extends BaseTests {
+public class StudentFormTests extends BaseTest {
 
     @Test
     public void studentForm_inputsRequiredValues_createsUser() throws InterruptedException {
