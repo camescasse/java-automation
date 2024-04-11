@@ -2,7 +2,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public abstract class BaseTests {
+public abstract class BaseTest {
     protected ChromeDriver driver;
 
     @BeforeMethod
