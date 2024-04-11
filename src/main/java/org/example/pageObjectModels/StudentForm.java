@@ -2,11 +2,11 @@ package org.example.pageObjectModels;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 public class StudentForm extends PageObject {
 
-    public StudentForm(ChromeDriver driver) {
+    public StudentForm(WebDriver driver) {
         super(driver);
     }
 
@@ -46,4 +46,5 @@ public class StudentForm extends PageObject {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", buttonSubmit);
         buttonSubmit.click();
     }
+
 }

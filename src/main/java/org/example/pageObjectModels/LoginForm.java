@@ -2,8 +2,8 @@ package org.example.pageObjectModels;
 
 import org.example.models.User;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -18,7 +18,7 @@ public class LoginForm extends PageObject {
     @FindBy(id = "login")
     private WebElement buttonLogin;
 
-    public LoginForm(ChromeDriver driver) {
+    public LoginForm(WebDriver driver) {
         super(driver);
     }
 
