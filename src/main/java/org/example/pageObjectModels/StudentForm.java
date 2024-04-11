@@ -11,22 +11,28 @@ public class StudentForm {
         this.driver = driver;
     }
 
-    public void setName(String firstName, String lastName) {
+    public StudentForm setName(String firstName, String lastName) {
         var inputFirstName = driver.findElement(By.id("firstName"));
         inputFirstName.sendKeys(firstName);
 
         var inputLastName = driver.findElement(By.id("lastName"));
         inputLastName.sendKeys(lastName);
+
+        return this;
     }
 
-    public void setGender(String gender){
+    public StudentForm setGender(String gender){
         var radioGender = driver.findElement(By.xpath("//label[text()=\"" + gender + "\"]/.."));
         radioGender.click();
+
+        return this;
     }
 
-    public void setMobile(String mobile){
+    public StudentForm setMobile(String mobile){
         var inputMobile = driver.findElement(By.id("userNumber"));
         inputMobile.sendKeys(mobile);
+
+        return this;
     }
 
     public void submit(){

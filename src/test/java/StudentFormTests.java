@@ -23,10 +23,10 @@ public class StudentFormTests {
     @Test
     public void studentForm_inputsRequiredValues_createsUser() {
         var form = new StudentForm(driver);
-        form.setName("Eric", "Camescasse");
-        form.setGender("Male");
-        form.setMobile("8095980728");
-        form.submit();
+        form.setName("Eric", "Camescasse")
+            .setGender("Male")
+            .setMobile("8095980728")
+            .submit();
 
         var modal = new ConfirmationModal(driver);
 
