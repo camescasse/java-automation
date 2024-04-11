@@ -8,10 +8,11 @@ public class LoginFormTests extends BaseTest {
 
     @Test
     public void login_validCredentials_logsUserIn() {
-        var user = new User("jmendoza", "Juan123!");
         var form = new LoginForm(driver);
+        var user = new User("jmendoza", "Juan123!");
         form.open().login(user);
 
         assertThat(form.isLoggedIn()).isTrue();
     }
+
 }

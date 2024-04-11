@@ -21,7 +21,6 @@ public class LoginForm extends PageObject {
     @FindBy(id = "submit")
     private WebElement buttonLogOut;
 
-
     public LoginForm(ChromeDriver driver) {
         super(driver);
     }
@@ -46,4 +45,5 @@ public class LoginForm extends PageObject {
 
         return buttonLogOut.isDisplayed();
     }
+
 }
