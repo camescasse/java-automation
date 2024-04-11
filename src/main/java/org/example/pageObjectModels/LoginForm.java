@@ -18,9 +18,6 @@ public class LoginForm extends PageObject {
     @FindBy(id = "login")
     private WebElement buttonLogin;
 
-    @FindBy(id = "submit")
-    private WebElement buttonLogOut;
-
     public LoginForm(ChromeDriver driver) {
         super(driver);
     }
@@ -38,12 +35,6 @@ public class LoginForm extends PageObject {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", buttonLogin);
         buttonLogin.click();
-    }
-
-    public boolean isLoggedIn() {
-        wait.until(ExpectedConditions.elementToBeClickable(buttonLogOut));
-
-        return buttonLogOut.isDisplayed();
     }
 
 }
