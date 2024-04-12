@@ -22,6 +22,6 @@ UI Automation project written in Java, using Selenium and TestNG for the website
 
 > **Note:**
 > 
->Make sure to use your browser name in lowercase.
+>Make sure to write your browser name in lowercase.
 > 
 > Currently supported ones are Chrome, Firefox and Edge.
