@@ -19,4 +19,5 @@ public class StudentFormTests extends BaseTest {
 
         assertThat(modal.getTitleText()).isEqualTo("Thanks for submitting the form");
     }
+
 }
