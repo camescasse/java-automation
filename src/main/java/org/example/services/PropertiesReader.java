@@ -15,8 +15,8 @@ public class PropertiesReader {
 
     private PropertiesReader() {
         properties = new Properties();
-        try (FileInputStream fis = new FileInputStream(".properties")) {
-            properties.load(fis);
+        try (FileInputStream stream = new FileInputStream(".properties")) {
+            properties.load(stream);
         } catch (IOException e) {
             System.err.println(".properties file not found");
         }
