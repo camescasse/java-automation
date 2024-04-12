@@ -3,25 +3,37 @@ package org.example.pageObjectModels;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class StudentForm extends PageObject {
+public final class StudentForm extends PageObject {
+
+    @FindBy(id = "firstName")
+    private WebElement inputFirstName;
+
+    @FindBy(id = "lastName")
+    private WebElement inputLastName;
+
+    @FindBy(id = "userNumber")
+    private WebElement inputMobile;
+
+    @FindBy(id = "submit")
+    private WebElement buttonSubmit;
 
     public StudentForm(WebDriver driver) {
         super(driver);
     }
 
-    public StudentForm open() throws InterruptedException {
+    public StudentForm open() {
         driver.get("https://demoqa.com/automation-practice-form");
-        Thread.sleep(500);
+        wait.until(ExpectedConditions.elementToBeClickable(inputFirstName));
 
         return this;
     }
 
     public StudentForm setName(String firstName, String lastName) {
-        var inputFirstName = driver.findElement(By.id("firstName"));
         inputFirstName.sendKeys(firstName);
-
-        var inputLastName = driver.findElement(By.id("lastName"));
         inputLastName.sendKeys(lastName);
 
         return this;
@@ -35,14 +47,12 @@ public class StudentForm extends PageObject {
     }
 
     public StudentForm setMobile(String mobile) {
-        var inputMobile = driver.findElement(By.id("userNumber"));
         inputMobile.sendKeys(mobile);
 
         return this;
     }
 
     public void submit() {
-        var buttonSubmit = driver.findElement(By.id("submit"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", buttonSubmit);
         buttonSubmit.click();
     }

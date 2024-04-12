@@ -7,7 +7,7 @@ import static com.google.common.truth.Truth.assertThat;
 public class StudentFormTests extends BaseTest {
 
     @Test
-    public void studentForm_inputsRequiredValues_createsUser() throws InterruptedException {
+    public void studentForm_inputsRequiredValues_createsUser() {
         new StudentForm(driver)
                 .open()
                 .setName("Eric", "Camescasse")
