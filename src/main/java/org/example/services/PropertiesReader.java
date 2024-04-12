@@ -8,20 +8,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PropertiesReader {
-    private static final Logger LOGGER = Logger.getLogger(PropertiesReader.class.getName());
-    private final Properties properties;
     private static PropertiesReader instance;
+    private final Properties properties;
 
     private PropertiesReader() {
         properties = new Properties();
         try (FileInputStream fis = new FileInputStream(".properties")) {
             properties.load(fis);
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Failed to load properties file", e);
+            System.err.println(".properties file not found");
         }
     }
 
