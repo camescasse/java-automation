@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class StudentForm extends PageObject {
 
+    private final String url;
+
     @FindBy(id = "firstName")
     private WebElement inputFirstName;
 
@@ -23,10 +25,11 @@ public final class StudentForm extends PageObject {
 
     public StudentForm(WebDriver driver) {
         super(driver);
+        this.url = host + "/automation-practice-form";
     }
 
     public StudentForm open() {
-        driver.get("https://demoqa.com/automation-practice-form");
+        driver.get(url);
         wait.until(ExpectedConditions.elementToBeClickable(inputFirstName));
 
         return this;
