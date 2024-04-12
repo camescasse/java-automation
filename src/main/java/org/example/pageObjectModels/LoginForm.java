@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class LoginForm extends PageObject {
 
+    private final String url;
+
     @FindBy(id = "userName")
     private WebElement inputUserName;
 
@@ -20,10 +22,11 @@ public final class LoginForm extends PageObject {
 
     public LoginForm(WebDriver driver) {
         super(driver);
+        this.url = host + "/login";
     }
 
     public LoginForm open() {
-        driver.get("https://demoqa.com/login");
+        driver.get(url);
         wait.until(ExpectedConditions.elementToBeClickable(inputUserName));
 
         return this;
