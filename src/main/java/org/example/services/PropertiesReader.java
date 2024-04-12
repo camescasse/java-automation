@@ -43,4 +43,5 @@ public class PropertiesReader {
             default -> throw new Exception("Invalid BROWSER value. Check the .properties file");
         };
     }
+
 }
