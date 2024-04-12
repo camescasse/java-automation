@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ProfilePage extends PageObject {
+public final class ProfilePage extends PageObject {
 
     @FindBy(id = "submit")
     private WebElement buttonLogOut;
