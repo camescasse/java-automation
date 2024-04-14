@@ -24,3 +24,4 @@ jobs:
 
       - name: Run Selenium Tests
         run: mvn test
+
