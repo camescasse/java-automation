@@ -44,6 +44,7 @@ public final class StudentForm extends PageObject {
 
     public StudentForm setGender(String gender) {
         var radioGender = driver.findElement(By.xpath("//label[text()=\"" + gender + "\"]/.."));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", radioGender);
         radioGender.click();
 
         return this;
