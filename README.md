@@ -21,8 +21,8 @@ UI Automation project written in Java, using Selenium and TestNG for the website
 | `BROWSER`  | Defines which Web Browser to use on your machine (eg. `chrome`, `firefox`, etc).       |
 | `HEADLESS` | Determines whether tests will run headless or not. Inputs allowed are `true`, `false`. |
 
-> **Note:**
+> **Notes:**
 > 
->Make sure to write your browser name in lowercase.
+>`BROWSER` and `HEADLESS` values are case-insensitive.
 > 
 > Currently supported ones are Chrome, Firefox and Edge.
