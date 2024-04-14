@@ -2,8 +2,11 @@ package org.example.services;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,14 +37,36 @@ public class PropertiesReader {
     }
 
     public WebDriver getDriver() throws Exception {
-        var property = properties.getProperty("BROWSER");
+        var browser = properties.getProperty("BROWSER");
+        var headless = properties.getProperty("HEADLESS");
 
-        return switch (property) {
-            case "chrome" -> new ChromeDriver();
-            case "firefox" -> new FirefoxDriver();
-            case "edge" -> new EdgeDriver();
-            default -> throw new Exception("Invalid BROWSER value. Check the .properties file");
-        };
+        if (browser != null && (browser.equals("chrome") || browser.equals("firefox") || browser.equals("edge"))) {
+            if (headless.equals("true") || headless.equals("false")) {
+                if (browser.equals("chrome") && headless.equals("true")) {
+                    var driverOptions = new ChromeOptions();
+                    driverOptions.addArguments("--headless");
+                    return new ChromeDriver(driverOptions);
+                } else if (browser.equals("chrome")) {
+                    return new ChromeDriver();
+                } else if (browser.equals("firefox") && headless.equals("true")) {
+                    var driverOptions = new FirefoxOptions();
+                    driverOptions.addArguments("--headless");
+                    return new FirefoxDriver(driverOptions);
+                } else if (browser.equals("firefox")) {
+                    return new FirefoxDriver();
+                } else if (headless.equals("true")) {
+                    var driverOptions = new EdgeOptions();
+                    driverOptions.addArguments("--headless");
+                    return new EdgeDriver(driverOptions);
+                } else {
+                    return new EdgeDriver();
+                }
+            } else {
+                throw new Exception("Invalid HEADLESS value. Check the .properties file");
+            }
+        } else {
+            throw new Exception("Invalid BROWSER value. Check the .properties file");
+        }
     }
 
 }
