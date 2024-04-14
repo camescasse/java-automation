@@ -43,21 +43,21 @@ public class PropertiesReader {
         if (browser != null && (browser.equals("chrome") || browser.equals("firefox") || browser.equals("edge"))) {
             if (headless.equals("true") || headless.equals("false")) {
                 if (browser.equals("chrome") && headless.equals("true")) {
-                    var driverOptions = new ChromeOptions();
-                    driverOptions.addArguments("--headless");
-                    return new ChromeDriver(driverOptions);
+                    var options = new ChromeOptions();
+                    options.addArguments("--headless");
+                    return new ChromeDriver(options);
                 } else if (browser.equals("chrome")) {
                     return new ChromeDriver();
                 } else if (browser.equals("firefox") && headless.equals("true")) {
-                    var driverOptions = new FirefoxOptions();
-                    driverOptions.addArguments("--headless");
-                    return new FirefoxDriver(driverOptions);
+                    var options = new FirefoxOptions();
+                    options.addArguments("--headless");
+                    return new FirefoxDriver(options);
                 } else if (browser.equals("firefox")) {
                     return new FirefoxDriver();
                 } else if (headless.equals("true")) {
-                    var driverOptions = new EdgeOptions();
-                    driverOptions.addArguments("--headless");
-                    return new EdgeDriver(driverOptions);
+                    var options = new EdgeOptions();
+                    options.addArguments("--headless");
+                    return new EdgeDriver(options);
                 } else {
                     return new EdgeDriver();
                 }
