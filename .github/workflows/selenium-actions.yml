@@ -18,7 +18,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'maven'
       - name: Build with Maven
-        run: java src/main/java/org/example/Main.java
+        run: mvn -B package --file pom.xml
 
