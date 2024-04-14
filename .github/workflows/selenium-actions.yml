@@ -18,10 +18,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '22'
-          cache: 'maven'
-          cache-dependency-path: 'pom.xml'
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B clean package
 
       - name: Run Selenium Tests
         run: mvn test
