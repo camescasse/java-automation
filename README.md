@@ -15,13 +15,14 @@ UI Automation project written in Java, using Selenium and TestNG for the website
 3. Install dependencies found in `pom.xml` using your preferred IDE
 4. Create a file in root called `.properties` and copy the key/values from the `example.properties` file
 
-| Key     | Description                                                                      |
-|---------|----------------------------------------------------------------------------------|
-| `HOST`    | Starting part of the DEMOQA website                                              |
-| `BROWSER` | Defines which Web Browser to use on your machine (eg. `chrome`, `firefox`, etc). |
+| Key        | Description                                                                            |
+|------------|----------------------------------------------------------------------------------------|
+| `HOST`     | Starting part of the DEMOQA website                                                    |
+| `BROWSER`  | Defines which Web Browser to use on your machine (eg. `chrome`, `firefox`, etc).       |
+| `HEADLESS` | Determines whether tests will run headless or not. Inputs allowed are `true`, `false`. |
 
-> **Note:**
+> **Notes:**
 > 
->Make sure to write your browser name in lowercase.
+>`BROWSER` and `HEADLESS` values are case-insensitive.
 > 
 > Currently supported ones are Chrome, Firefox and Edge.

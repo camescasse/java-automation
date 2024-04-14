@@ -2,8 +2,11 @@ package org.example.services;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,14 +37,36 @@ public class PropertiesReader {
     }
 
     public WebDriver getDriver() throws Exception {
-        var property = properties.getProperty("BROWSER");
+        var browser = properties.getProperty("BROWSER").toLowerCase();
+        var headless = properties.getProperty("HEADLESS").toLowerCase();
 
-        return switch (property) {
-            case "chrome" -> new ChromeDriver();
-            case "firefox" -> new FirefoxDriver();
-            case "edge" -> new EdgeDriver();
-            default -> throw new Exception("Invalid BROWSER value. Check the .properties file");
+        validateBrowser(browser);
+        validateHeadless(headless);
+
+        return switch (browser) {
+            case "chrome" -> headless.equals("true") ?
+                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
+                    new ChromeDriver();
+            case "firefox" -> headless.equals("true") ?
+                    new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
+                    new FirefoxDriver();
+            case "edge" -> headless.equals("true") ?
+                    new EdgeDriver(new EdgeOptions().addArguments("--headless")) :
+                    new EdgeDriver();
+            default -> throw new Exception("Unsupported browser: " + browser);
         };
+    }
+
+    private void validateBrowser(String browser) throws Exception {
+        if (browser == null || !(browser.equals("chrome") || browser.equals("firefox") || browser.equals("edge"))) {
+            throw new Exception("Invalid BROWSER value. Check the .properties file");
+        }
+    }
+
+    private void validateHeadless(String headless) throws Exception {
+        if (headless == null || !(headless.equals("true") || headless.equals("false"))) {
+            throw new Exception("Invalid HEADLESS value. Check the .properties file");
+        }
     }
 
 }
