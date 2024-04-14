@@ -18,6 +18,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '22'
+          cache: 'maven'
       - name: Build with Maven
         run: mvn -B clean package
 
