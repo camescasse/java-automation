@@ -20,4 +20,5 @@ jobs:
           java-version: '21'
           cache: 'maven'
       - name: Build with Maven
-        run: java Main.java
+        run: java src/main/java/org/example/Main.java
+
