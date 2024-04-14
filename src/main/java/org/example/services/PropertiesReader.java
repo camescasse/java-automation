@@ -37,35 +37,35 @@ public class PropertiesReader {
     }
 
     public WebDriver getDriver() throws Exception {
-        var browser = properties.getProperty("BROWSER");
-        var headless = properties.getProperty("HEADLESS");
+        var browser = properties.getProperty("BROWSER").toLowerCase();
+        var headless = properties.getProperty("HEADLESS").toLowerCase();
 
-        if (browser != null && (browser.equals("chrome") || browser.equals("firefox") || browser.equals("edge"))) {
-            if (headless.equals("true") || headless.equals("false")) {
-                if (browser.equals("chrome") && headless.equals("true")) {
-                    var options = new ChromeOptions();
-                    options.addArguments("--headless");
-                    return new ChromeDriver(options);
-                } else if (browser.equals("chrome")) {
-                    return new ChromeDriver();
-                } else if (browser.equals("firefox") && headless.equals("true")) {
-                    var options = new FirefoxOptions();
-                    options.addArguments("--headless");
-                    return new FirefoxDriver(options);
-                } else if (browser.equals("firefox")) {
-                    return new FirefoxDriver();
-                } else if (headless.equals("true")) {
-                    var options = new EdgeOptions();
-                    options.addArguments("--headless");
-                    return new EdgeDriver(options);
-                } else {
-                    return new EdgeDriver();
-                }
-            } else {
-                throw new Exception("Invalid HEADLESS value. Check the .properties file");
-            }
-        } else {
+        validateBrowser(browser);
+        validateHeadless(headless);
+
+        return switch (browser) {
+            case "chrome" -> headless.equals("true") ?
+                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
+                    new ChromeDriver();
+            case "firefox" -> headless.equals("true") ?
+                    new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
+                    new FirefoxDriver();
+            case "edge" -> headless.equals("true") ?
+                    new EdgeDriver(new EdgeOptions().addArguments("--headless")) :
+                    new EdgeDriver();
+            default -> throw new Exception("Unsupported browser: " + browser);
+        };
+    }
+
+    private void validateBrowser(String browser) throws Exception {
+        if (browser == null || !(browser.equals("chrome") || browser.equals("firefox") || browser.equals("edge"))) {
             throw new Exception("Invalid BROWSER value. Check the .properties file");
+        }
+    }
+
+    private void validateHeadless(String headless) throws Exception {
+        if (headless == null || !(headless.equals("true") || headless.equals("false"))) {
+            throw new Exception("Invalid HEADLESS value. Check the .properties file");
         }
     }
 
