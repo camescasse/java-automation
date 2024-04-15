@@ -22,5 +22,11 @@ jobs:
           distribution: 'zulu'
           java-version: '22'
           cache: 'maven'
+      - name: Set up Chrome
+        uses: actions/setup-chrome@v2
+      - name: Set up Firefox
+        uses: actions/setup-firefox@v2
+      - name: Set up Edge
+        uses: actions/setup-edge@v1
       - name: Build with Maven, run tests
         run: mvn -B package --file pom.xml
