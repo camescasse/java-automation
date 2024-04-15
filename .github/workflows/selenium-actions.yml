@@ -1,12 +1,9 @@
 name: Selenium Tests
 
-run-name: ${{ github.actor }} is learning GitHub Actions
-
 on:
   push:
     branches:
       - master
-      - 25-setup-github-actions-workflow
   pull_request:
     branches:
       - master
