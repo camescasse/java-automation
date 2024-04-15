@@ -37,24 +37,25 @@ public class PropertiesReader {
     }
 
     public WebDriver getDriver() {
-        var browser = properties.getProperty("BROWSER");
-        if (browser == null) browser = "";
-        else browser = browser.toLowerCase();
-
-        var headlessValue = properties.getProperty("HEADLESS");
-        boolean isHeadless = headlessValue == null || headlessValue.isEmpty() || Boolean.parseBoolean(headlessValue);
-
-        return switch (browser) {
-            case "firefox" -> isHeadless ?
-                    new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
-                    new FirefoxDriver();
-            case "edge" -> isHeadless ?
-                    new EdgeDriver(new EdgeOptions().addArguments("--headless")) :
-                    new EdgeDriver();
-            default -> isHeadless ?
-                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
-                    new ChromeDriver();
-        };
+//        var browser = properties.getProperty("BROWSER");
+//        if (browser == null) browser = "";
+//        else browser = browser.toLowerCase();
+//
+//        var headlessValue = properties.getProperty("HEADLESS");
+//        boolean isHeadless = headlessValue == null || headlessValue.isEmpty() || Boolean.parseBoolean(headlessValue);
+//
+//        return switch (browser) {
+//            case "firefox" -> isHeadless ?
+//                    new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
+//                    new FirefoxDriver();
+//            case "edge" -> isHeadless ?
+//                    new EdgeDriver(new EdgeOptions().addArguments("--headless")) :
+//                    new EdgeDriver();
+//            default -> isHeadless ?
+//                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
+//                    new ChromeDriver();
+//        };
+        return new ChromeDriver();
     }
 
 }
