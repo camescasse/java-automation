@@ -7,7 +7,7 @@ public abstract class BaseTest {
     protected WebDriver driver;
 
     @BeforeMethod
-    public void setUp() throws Exception {
+    public void setUp() {
         driver = PropertiesReader.getInstance().getDriver();
     }
 
