@@ -7,9 +7,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -44,14 +41,10 @@ public class PropertiesReader {
         if (browser == null) browser = "";
         else browser = browser.toLowerCase();
 
-        var isHeadless = Boolean.parseBoolean(properties.getProperty("HEADLESS"));
-        var capabilities = new DesiredCapabilities();
-        capabilities.setCapability("headless", isHeadless);
+        var headlessValue = properties.getProperty("HEADLESS");
+        boolean isHeadless = headlessValue == null || headlessValue.isEmpty() || Boolean.parseBoolean(headlessValue);
 
         return switch (browser) {
-            case "safari" -> isHeadless ?
-                    new SafariDriver(new SafariOptions(capabilities)) :
-                    new SafariDriver();
             case "firefox" -> isHeadless ?
                     new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
                     new FirefoxDriver();
