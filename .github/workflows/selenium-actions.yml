@@ -22,5 +22,5 @@ jobs:
           distribution: 'zulu'
           java-version: '22'
           cache: 'maven'
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+      - name: Build with Maven, run tests
+        run: mvn -B package --file pom.xml
