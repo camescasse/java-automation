@@ -22,14 +22,5 @@ jobs:
           distribution: 'zulu'
           java-version: '22'
           cache: 'maven'
-      - name: Install Chrome and ChromeDriver
-        run: |
-          LATEST_CHROME=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$LATEST_CHROME/chromedriver_linux64.zip
-          unzip -q /tmp/chromedriver.zip -d /tmp
-          sudo mv /tmp/chromedriver /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
       - name: Build with Maven, run tests
         run: mvn -B package --file pom.xml

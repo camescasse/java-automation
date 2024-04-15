@@ -8,7 +8,6 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = PropertiesReader.getInstance().getDriver();
     }
 
