@@ -12,17 +12,24 @@ UI Automation project written in Java, using Selenium and TestNG for the website
 
 1. Clone this repository
 2. Navigate to the project directory
-3. Install dependencies found in `pom.xml` using your preferred IDE
-4. Create a file in root called `.properties` and copy the key/values from the `example.properties` file
+3. Install dependencies found in `pom.xml` Maven or your preferred IDE
+
+#### Optional
+
+Create a file in root called `.properties` and copy the key/values from the `example.properties` file
 
 | Key        | Description                                                                            |
 |------------|----------------------------------------------------------------------------------------|
-| `HOST`     | Starting part of the DEMOQA website                                                    |
+| `HOST`     | Defines stage/test environment host. Defaults to production.                           |
 | `BROWSER`  | Defines which Web Browser to use on your machine (eg. `chrome`, `firefox`, etc).       |
 | `HEADLESS` | Determines whether tests will run headless or not. Inputs allowed are `true`, `false`. |
 
 > **Notes:**
-> 
+>
 >`BROWSER` and `HEADLESS` values are case-insensitive.
 > 
-> Currently supported ones are Chrome, Firefox and Edge.
+>`BROWSER` defaults to `chrome`.
+> 
+> `HEADLESS` defaults to `true`.
+> 
+> Currently supported browsers are Chrome, Firefox and Edge.
