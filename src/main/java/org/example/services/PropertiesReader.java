@@ -7,6 +7,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,37 +39,29 @@ public class PropertiesReader {
         return properties.getProperty(key);
     }
 
-    public WebDriver getDriver() throws Exception {
-        var browser = properties.getProperty("BROWSER").toLowerCase();
-        var headless = properties.getProperty("HEADLESS").toLowerCase();
+    public WebDriver getDriver() {
+        var browser = properties.getProperty("BROWSER");
+        if (browser == null) browser = "";
+        else browser = browser.toLowerCase();
 
-        validateBrowser(browser);
-        validateHeadless(headless);
+        var isHeadless = Boolean.parseBoolean(properties.getProperty("HEADLESS"));
+        var capabilities = new DesiredCapabilities();
+        capabilities.setCapability("headless", isHeadless);
 
         return switch (browser) {
-            case "chrome" -> headless.equals("true") ?
-                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
-                    new ChromeDriver();
-            case "firefox" -> headless.equals("true") ?
+            case "safari" -> isHeadless ?
+                    new SafariDriver(new SafariOptions(capabilities)) :
+                    new SafariDriver();
+            case "firefox" -> isHeadless ?
                     new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
                     new FirefoxDriver();
-            case "edge" -> headless.equals("true") ?
+            case "edge" -> isHeadless ?
                     new EdgeDriver(new EdgeOptions().addArguments("--headless")) :
                     new EdgeDriver();
-            default -> throw new Exception("Unsupported browser: " + browser);
+            default -> isHeadless ?
+                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
+                    new ChromeDriver();
         };
-    }
-
-    private void validateBrowser(String browser) throws Exception {
-        if (browser == null || !(browser.equals("chrome") || browser.equals("firefox") || browser.equals("edge"))) {
-            throw new Exception("Invalid BROWSER value. Check the .properties file");
-        }
-    }
-
-    private void validateHeadless(String headless) throws Exception {
-        if (headless == null || !(headless.equals("true") || headless.equals("false"))) {
-            throw new Exception("Invalid HEADLESS value. Check the .properties file");
-        }
     }
 
 }
