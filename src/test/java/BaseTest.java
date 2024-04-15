@@ -1,4 +1,4 @@
-import org.example.services.PropertiesReader;
+import org.example.services.DriverService;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -8,7 +8,7 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = PropertiesReader.getInstance().getDriver();
+        driver = DriverService.getInstance().getDriver();
     }
 
     @AfterMethod
