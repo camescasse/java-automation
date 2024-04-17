@@ -37,7 +37,7 @@ public class upDownForm extends PageObject {
 
     public boolean isFileDownloaded() {
         var timeoutSeconds = 30;
-        var downloadPath = System.getProperty("user.home") + "\\Downloads";
+        var downloadPath = System.getProperty("user.home") + "/Downloads";
         var filesBeforeDownload = getFileCount(downloadPath);
 
         buttonDownload.click();
@@ -57,7 +57,7 @@ public class upDownForm extends PageObject {
         var directory = System.getProperty("user.dir");
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonUpload);
-        buttonUpload.sendKeys(directory + "\\src\\test\\java\\resources\\" + file);
+        buttonUpload.sendKeys(directory + "/src/test/java/resources/" + file);
         wait.until(ExpectedConditions.elementToBeClickable(uploadPath));
 
         return this;
