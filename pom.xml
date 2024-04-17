@@ -14,6 +14,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -22,7 +32,6 @@
             <artifactId>selenium-java</artifactId>
             <version>4.19.1</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -30,12 +39,18 @@
             <version>7.10.1</version>
             <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.google.truth/truth -->
         <dependency>
             <groupId>com.google.truth</groupId>
             <artifactId>truth</artifactId>
             <version>1.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version>
             <scope>test</scope>
         </dependency>
 
