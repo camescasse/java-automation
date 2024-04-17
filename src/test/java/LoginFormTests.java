@@ -9,9 +9,9 @@ public class LoginFormTests extends BaseTest {
 
     @Test
     public void login_validCredentials_logsUserIn() {
-        var loginForm = new LoginForm(driver);
+        var form = new LoginForm(driver);
         var user = new User("jmendoza", "Juan123!");
-        loginForm.open().login(user);
+        form.open().login(user);
 
         var profile = new ProfilePage(driver);
 
