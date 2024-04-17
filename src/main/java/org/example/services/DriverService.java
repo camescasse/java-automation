@@ -31,10 +31,10 @@ public class DriverService {
                     new FirefoxDriver(new FirefoxOptions().addArguments("--headless")) :
                     new FirefoxDriver();
             case "edge" -> isHeadless ?
-                    new EdgeDriver(new EdgeOptions().addArguments("--headless")) :
+                    new EdgeDriver(new EdgeOptions().addArguments("--headless=new")) :
                     new EdgeDriver();
             default -> isHeadless ?
-                    new ChromeDriver(new ChromeOptions().addArguments("--headless")) :
+                    new ChromeDriver(new ChromeOptions().addArguments("--headless=new")) :
                     new ChromeDriver();
         };
     }
