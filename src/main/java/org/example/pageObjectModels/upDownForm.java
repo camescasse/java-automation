@@ -1,5 +1,6 @@
 package org.example.pageObjectModels;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,12 @@ public class upDownForm extends PageObject {
     @FindBy(id = "downloadButton")
     private WebElement buttonDownload;
 
+    @FindBy(id = "uploadFile")
+    private WebElement buttonUpload;
+
+    @FindBy(id = "uploadedFilePath")
+    private WebElement uploadPath;
+
     public upDownForm(WebDriver driver) {
         super(driver);
         this.url = host + "/upload-download";
@@ -31,8 +38,8 @@ public class upDownForm extends PageObject {
     public boolean isFileDownloaded() {
         var timeoutSeconds = 30;
         var downloadPath = System.getProperty("user.home") + "\\Downloads";
-
         var filesBeforeDownload = getFileCount(downloadPath);
+
         buttonDownload.click();
 
         for (int i = 0; i < timeoutSeconds; i++) {
@@ -44,6 +51,22 @@ public class upDownForm extends PageObject {
             oneSecondSleep();
         }
         return false;
+    }
+
+    public upDownForm uploadFile(String file) {
+        var directory = System.getProperty("user.dir");
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonUpload);
+        buttonUpload.sendKeys(directory + "\\src\\test\\java\\resources\\" + file);
+        wait.until(ExpectedConditions.elementToBeClickable(uploadPath));
+
+        return this;
+    }
+
+    public boolean isUploaded() {
+        wait.until(ExpectedConditions.elementToBeClickable(uploadPath));
+
+        return uploadPath.isDisplayed();
     }
 
     private int getFileCount(String path) {
