@@ -12,7 +12,7 @@ UI Automation project written in Java, using Selenium and TestNG for the website
 
 1. Clone this repository
 2. Navigate to the project directory
-3. Install dependencies found in `pom.xml` Maven or your preferred IDE
+3. Install dependencies found in `pom.xml` using Maven or your preferred IDE
 
 #### Optional
 
