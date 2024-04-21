@@ -1,5 +1,5 @@
 import org.example.models.User;
-import org.example.pageObjectModels.LoginForm;
+import org.example.pageObjectModels.NavBar;
 import org.example.pageObjectModels.ProfilePage;
 import org.testng.annotations.Test;
 
@@ -9,9 +9,10 @@ public class LoginFormTests extends BaseTest {
 
     @Test
     public void login_validCredentials_logsUserIn() {
-        var form = new LoginForm(driver);
+        var navbar = new NavBar(driver);
         var user = new User("jmendoza", "Juan123!");
-        form.open().login(user);
+        var loginPage = navbar.goBookStore().login();
+        loginPage.login(user);
 
         var profile = new ProfilePage(driver);
 
