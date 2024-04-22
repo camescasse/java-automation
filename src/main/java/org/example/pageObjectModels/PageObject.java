@@ -14,7 +14,7 @@ public abstract class PageObject {
 
     public PageObject(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         var hostProperty = PropertiesReader.getInstance().getProperty("HOST");
         if (hostProperty == null || hostProperty.isEmpty()) host = "https://demoqa.com";
         else host = hostProperty;
