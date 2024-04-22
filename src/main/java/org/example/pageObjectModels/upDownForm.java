@@ -6,16 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.io.File;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
 public class upDownForm extends PageObject {
 
     private final String url;
-
-    @FindBy(id = "downloadButton")
-    private WebElement buttonDownload;
 
     @FindBy(id = "uploadFile")
     private WebElement buttonUpload;
@@ -30,27 +23,9 @@ public class upDownForm extends PageObject {
 
     public upDownForm open() {
         driver.get(url);
-        wait.until(ExpectedConditions.elementToBeClickable(buttonDownload));
+        wait.until(ExpectedConditions.elementToBeClickable(buttonUpload));
 
         return this;
-    }
-
-    public boolean isFileDownloaded() {
-        var timeoutSeconds = 30;
-        var downloadPath = System.getProperty("user.home") + "/Downloads";
-        var filesBeforeDownload = getFileCount(downloadPath);
-
-        buttonDownload.click();
-
-        for (int i = 0; i < timeoutSeconds; i++) {
-            var filesAfterDownload = getFileCount(downloadPath);
-
-            if (filesAfterDownload > filesBeforeDownload) {
-                return true;
-            }
-            oneSecondSleep();
-        }
-        return false;
     }
 
     public upDownForm uploadFile(String file) {
@@ -67,18 +42,6 @@ public class upDownForm extends PageObject {
         wait.until(ExpectedConditions.elementToBeClickable(uploadPath));
 
         return uploadPath.isDisplayed();
-    }
-
-    private int getFileCount(String path) {
-        return Objects.requireNonNull(new File(path).listFiles()).length;
-    }
-
-    private void oneSecondSleep() {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            System.err.println("Download failed.");
-        }
     }
 
 }
