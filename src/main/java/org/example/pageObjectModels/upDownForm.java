@@ -23,7 +23,6 @@ public class upDownForm extends PageObject {
 
     public upDownForm open() {
         driver.get(url);
-        wait.until(ExpectedConditions.elementToBeClickable(buttonUpload));
 
         return this;
     }
@@ -33,7 +32,6 @@ public class upDownForm extends PageObject {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonUpload);
         buttonUpload.sendKeys(directory + "/src/test/java/resources/" + file);
-        wait.until(ExpectedConditions.elementToBeClickable(uploadPath));
 
         return this;
     }

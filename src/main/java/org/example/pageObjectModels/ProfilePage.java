@@ -3,7 +3,6 @@ package org.example.pageObjectModels;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class ProfilePage extends PageObject {
 
@@ -15,7 +14,6 @@ public final class ProfilePage extends PageObject {
     }
 
     public boolean isLoggedIn() {
-        wait.until(ExpectedConditions.elementToBeClickable(buttonLogOut));
 
         return buttonLogOut.isDisplayed();
     }

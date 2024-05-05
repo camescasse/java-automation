@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class LoginForm extends PageObject {
 
@@ -27,7 +26,6 @@ public final class LoginForm extends PageObject {
 
     public LoginForm open() {
         driver.get(url);
-        wait.until(ExpectedConditions.elementToBeClickable(inputUserName));
 
         return this;
     }

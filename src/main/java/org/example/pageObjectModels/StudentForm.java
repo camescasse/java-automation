@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class StudentForm extends PageObject {
 
@@ -30,7 +29,6 @@ public final class StudentForm extends PageObject {
 
     public StudentForm open() {
         driver.get(url);
-        wait.until(ExpectedConditions.elementToBeClickable(inputFirstName));
 
         return this;
     }
