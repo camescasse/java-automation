@@ -3,7 +3,6 @@ package org.example.pageObjectModels;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class NavBar extends PageObject {
 
@@ -29,18 +28,15 @@ public class NavBar extends PageObject {
     private WebElement spanLogin;
 
 
-
     public NavBar(WebDriver driver) {
         super(driver);
         var url = host + "/forms";
         driver.get(url);
-        wait.until(ExpectedConditions.elementToBeClickable(headerForms));
         headerForms.click();
     }
 
     public NavBar goBookStore() {
         headerBookStore.click();
-        wait.until(ExpectedConditions.elementToBeClickable(spanLogin));
 
         return this;
     }
