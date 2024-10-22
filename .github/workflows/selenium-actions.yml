@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-java@v4.2.1
         with:
           distribution: 'zulu'
-          java-version: '22'
+          java-version: '17'
           cache: 'maven'
       - name: Build with Maven, run tests
         run: mvn -B package --file pom.xml
